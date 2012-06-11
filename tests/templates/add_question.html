@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block script %}
+	<script src='/static/js/add_question.js'></script>
+	<script src='/static/js/json.js'></script>
+{% endblock %}
+
+{% block content %}
+<article>
+	<header>Add new question:</header>
+	<form method='post' id='add_question_form'>{% csrf_token %}
+		<label>Subject:</label><br>
+		<select id='subject'>
+			<option value='Math'>Math</option>
+			<option value='Algo'>Algo</option>
+		</select>
+		<!--input type='text' id='subject'-->
+		<br>
+		<label>Theme:</label><br>
+		<select id='theme'>
+			<option value='Theme 1'>Theme 1</option>
+			<option vakue='Theme 2'>Theme 2</option>
+		</select>
+		<!--input type='text' id='theme'-->
+		<br>
+		<label>Question:</label><br>
+		<textarea id='question'></textarea>
+		<br>
+		<div class='answer'>
+			<label>Answer 1:</label><br>
+			<input type='text' class='answer' data-a='0'>
+			<input type='checkbox' class='right' data-a='0'>
+		</div>
+		<div class='answer'>
+			<label>Answer 2:</label><br>
+			<input type='text' class='answer' data-a='1'>
+			<input type='checkbox' class='right' data-a='1'>
+		</div>
+		<div class='answer'>
+			<label>Answer 3:</label><br>
+			<input type='text' class='answer' data-a='2'>
+			<input type='checkbox' class='right' data-a='2'>
+		</div>
+		<div id='control'>
+			<button type='button' id='add'>add</button>
+			<button tyoe='remove' id='remove'>remove</button>
+			<button type='button' id='submit'>submit</button>
+		<div>
+	</form>
+</article>
+{% endblock %}

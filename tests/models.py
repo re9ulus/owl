@@ -1,13 +1,46 @@
 from django.db import models
-from djangotoolbox.fields import ListField
-
-class Answer:
-	def __init__(self, text, is_true):
-		self.text = text
-		self.is_true = is_true
+from djangotoolbox.fields import ListField, EmbeddedModelField
+class Answer(models.Model):
+	text = models.TextField()
+	right = models.BooleanField()
 
 # Create your models here.
-class Questions(models.Model):
-	text = models.TextField()
-	theme = models.CharField(max_length = 100)
-	answers = ListField()
+class Question(models.Model):
+	kind = models.CharField(max_length = 10)
+	subject = models.CharField(max_length = 20)	
+	theme = models.CharField(max_length = 20) 	
+	text = models.TextField()					
+	answers = ListField(EmbeddedModelField(Answer))
+
+class Quizz(models.Model):
+	subject = models.CharField(max_length = 20)		
+	theme = models.CharField(max_length = 20)		
+	questions = ListField(EmbeddedModelField(Question))
+
+class QuestionResult(models.Model):
+	question = EmbeddedModelField(Question)
+	answer = EmbeddedModelField(Answer)
+
+class QuizzResult(models.Model):
+	mark = models.IntegerField()
+	quizz = EmbeddedModelField(Quizz)
+	questions = ListField(EmbeddedModelField(QuestionResult))
+
+# class User(models.Model):
+# 	'''
+# 	abstract class representing user of the system
+# 	'''
+# 	name = models.CharField(max_length=20)
+# 	surname = models.CharField(max_length=30)
+# 	email = models.CharField(max_length=30)
+# 	password = models.CharField(max_length=30)
+# 	pol = models.BooleanField()
+# 	birthday = models.DateField()
+
+# 	class Meta:
+# 		abstract = True
+
+# class Student(User):
+# 	group = models.CharField(max_length=5)
+# 	attempts = models.
+# 	results = ListField(EmbeddedModelField(QuizzResult))
