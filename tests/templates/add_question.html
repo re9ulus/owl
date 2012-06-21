@@ -8,44 +8,44 @@
 {% block content %}
 <article>
 	<header>Add new question:</header>
-	<form method='post' id='add_question_form'>{% csrf_token %}
-		<label>Subject:</label><br>
-		<select id='subject'>
-			<option value='Math'>Math</option>
-			<option value='Algo'>Algo</option>
+	<div id='add_question_form'>{% csrf_token %}
+		<label>Type:</label>
+		<br>
+		<select id='type'>
+			<option value="many_ans">Many answers question</option>
+			<option value="one_ans">One answer question</option>
+			<option value="text_ans">Text answer</option>
+			<option value="free_ans">Free ans</option>
 		</select>
-		<!--input type='text' id='subject'-->
 		<br>
-		<label>Theme:</label><br>
-		<select id='theme'>
-			<option value='Theme 1'>Theme 1</option>
-			<option vakue='Theme 2'>Theme 2</option>
-		</select>
-		<!--input type='text' id='theme'-->
-		<br>
-		<label>Question:</label><br>
-		<textarea id='question'></textarea>
-		<br>
-		<div class='answer'>
-			<label>Answer 1:</label><br>
-			<input type='text' class='answer' data-a='0'>
-			<input type='checkbox' class='right' data-a='0'>
+		<div id='question_input'>
+			<label>Subject:</label><br>
+			<select id='subject'>
+				<!--TODO: Ajax content from db-->
+				<option value='Math'>Math</option>
+				<option value='Algo'>Algo</option>
+			</select>
+			<br>
+			<label>Theme:</label><br>
+			<select id='theme'>
+				<!--TODO: Ajax content from db-->
+				<option value='Theme 1'>Theme 1</option>
+				<option vakue='Theme 2'>Theme 2</option>
+			</select>
+			<br>
+			<label>Question:</label><br>
+			<textarea id='question'></textarea>
+			<br>
+
+			<!-- Variative part -->
+			<div id='answers'></div>
+			
+			<div id='control'>
+				<button type='button' id='add'>add</button>
+				<button type='button' id='remove'>remove</button>
+				<button type='button' id='submit'>submit</button>
+			</div>
 		</div>
-		<div class='answer'>
-			<label>Answer 2:</label><br>
-			<input type='text' class='answer' data-a='1'>
-			<input type='checkbox' class='right' data-a='1'>
-		</div>
-		<div class='answer'>
-			<label>Answer 3:</label><br>
-			<input type='text' class='answer' data-a='2'>
-			<input type='checkbox' class='right' data-a='2'>
-		</div>
-		<div id='control'>
-			<button type='button' id='add'>add</button>
-			<button tyoe='remove' id='remove'>remove</button>
-			<button type='button' id='submit'>submit</button>
-		<div>
-	</form>
+	</div>
 </article>
 {% endblock %}

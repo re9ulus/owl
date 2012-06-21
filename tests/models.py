@@ -12,6 +12,13 @@ class Question(models.Model):
 	text = models.TextField()					
 	answers = ListField(EmbeddedModelField(Answer))
 
+	def __unicode__(self):
+		return self.__str__()
+
+	def __str__(self):
+		return self.text
+
+
 class Quizz(models.Model):
 	subject = models.CharField(max_length = 20)		
 	theme = models.CharField(max_length = 20)		

@@ -1,4 +1,3 @@
-#Helper methods for Question class
 #ToDO: 
 
 from models import Question
@@ -17,7 +16,7 @@ def get(**kwargs):
 	try:
 		res = Question.objects.get(**kwargs)
 	except Question.DoesNotExist:
-		res = []
+		res = ['']
 	return res
 
 def save_scratch(kind='', subject='', theme='', text='', answers=[]):
